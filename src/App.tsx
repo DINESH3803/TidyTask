@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components';
-import { Home, Tasks, Statistics, Settings } from './pages';
+import { Home, Statistics, Settings } from './pages';
+import Today from './pages/Today';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/today" element={<Today />} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>

@@ -5,6 +5,8 @@ import { CheckSquare, Sun, Moon, Zap, Home, ListTodo, BarChart3, Settings, User,
 import { useTaskStore } from '@/stores/taskStore';
 import { useAuthStore } from '@/stores/authStore';
 import AuthModal from './AuthModal';
+import ConfettiEffect from './ConfettiEffect';
+import { useTaskScheduler } from '@/hooks/useTaskScheduler';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -14,12 +16,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const location = useLocation();
-  const { stats, syncing } = useTaskStore();
+  const { stats, syncing, notifications, removeNotification } = useTaskStore();
   const { user, signOut, loading: authLoading } = useAuthStore();
-  const [notifications, setNotifications] = useState([
-    { id: 1, message: "Task completed! +50 XP", type: "success", timestamp: Date.now() - 5000 },
-    { id: 2, message: "New achievement unlocked!", type: "achievement", timestamp: Date.now() - 10000 },
-  ]);
+
+  // Initialize task scheduler
+  useTaskScheduler();
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
@@ -40,14 +41,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       loadUserStats();
     }
   }, [user]);
-
-  // Auto-remove notifications after 5 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setNotifications(prev => prev.filter(n => Date.now() - n.timestamp < 5000));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -80,7 +73,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/tasks', label: 'Tasks', icon: ListTodo },
+    { path: '/today', label: 'Today', icon: ListTodo },
     { path: '/statistics', label: 'Statistics', icon: BarChart3 },
     { path: '/settings', label: 'Settings', icon: Settings },
   ];
@@ -90,6 +83,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       initial={{ opacity: 0, x: 300 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 300 }}
+      onClick={() => removeNotification(notification.id)}
       className={`p-4 rounded-xl shadow-lg border backdrop-blur-lg ${
         notification.type === 'success' 
           ? 'bg-green-50/90 dark:bg-green-900/90 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200'
@@ -261,7 +255,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Notification Toasts */}
       <div className="fixed top-20 right-4 z-40 space-y-2">
         <AnimatePresence>
-          {notifications.map((notification) => (
+          {notifications.slice(0, 5).map((notification) => (
             <NotificationToast 
               key={notification.id} 
               notification={notification} 
@@ -269,6 +263,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           ))}
         </AnimatePresence>
       </div>
+
+      {/* Confetti Effect */}
+      <ConfettiEffect />
 
       {/* Main Content */}
       <main className="relative">

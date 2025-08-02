@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, Flag, Tag, Plus } from 'lucide-react';
-import { Task } from '@/pages/Tasks';
+import { X, Calendar, Flag, Tag, Plus, Repeat } from 'lucide-react';
+import { Task } from '@/stores/taskStore';
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -14,6 +14,7 @@ interface AddTaskModalProps {
     dueDate: string;
     xpReward: number;
     tags?: string[];
+    repeat?: 'none' | 'daily' | 'weekly' | 'monthly';
   }) => void;
   editingTask?: Task | null;
 }
@@ -32,6 +33,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
     dueDate: '',
     xpReward: 10,
     tags: '',
+   repeat: 'none' as 'none' | 'daily' | 'weekly' | 'monthly',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -48,6 +50,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
         dueDate: editingTask.dueDate,
         xpReward: editingTask.xpReward,
         tags: editingTask.tags?.join(', ') || '',
+        repeat: editingTask.repeat || 'none',
       });
     } else {
       setFormData({
@@ -58,6 +61,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
         dueDate: '',
         xpReward: 10,
         tags: '',
+        repeat: 'none',
       });
     }
   }, [editingTask]);
@@ -119,6 +123,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
       ...formData,
       xpReward: priorityConfig[formData.priority].xp,
       tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()).filter(Boolean) : [],
+      repeat: formData.repeat,
     });
     
     // Reset form
@@ -130,6 +135,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
       dueDate: '',
       xpReward: 10,
       tags: '',
+      repeat: 'none',
     });
     setErrors({});
     setIsSubmitting(false);
@@ -347,6 +353,29 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   >
                     {errors.dueDate}
                   </motion.p>
+                )}
+              </div>
+
+              {/* Repeat Options */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">
+                  <Repeat className="w-4 h-4 mr-2" />
+                  Repeat Task
+                </label>
+                <select
+                  value={formData.repeat}
+                  onChange={(e) => handleInputChange('repeat', e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                >
+                  <option value="none">No Repeat</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+                {formData.repeat !== 'none' && (
+                  <div className="text-xs text-blue-600 dark:text-blue-400">
+                    This task will automatically recreate when completed
+                  </div>
                 )}
               </div>
 
