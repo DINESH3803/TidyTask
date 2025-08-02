@@ -1,0 +1,173 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Calendar, Flag, Tag, CheckCircle, Clock, Edit, Trash2, Star } from 'lucide-react';
+import { Task } from '@/pages/Tasks';
+
+interface TaskCardProps {
+  task: Task;
+  onToggleComplete: (id: string) => void;
+  onEdit?: (task: Task) => void;
+  onDelete?: (id: string) => void;
+  onToggleFavorite?: (id: string) => void;
+}
+
+const TaskCard: React.FC<TaskCardProps> = ({ 
+  task, 
+  onToggleComplete, 
+  onEdit, 
+  onDelete, 
+  onToggleFavorite 
+}) => {
+  const priorityConfig = {
+    low: { color: 'from-green-500 to-emerald-500', border: 'border-green-200 dark:border-green-800' },
+    medium: { color: 'from-yellow-500 to-orange-500', border: 'border-yellow-200 dark:border-yellow-800' },
+    high: { color: 'from-red-500 to-pink-500', border: 'border-red-200 dark:border-red-800' },
+  };
+
+  const isOverdue = new Date(task.dueDate) < new Date() && !task.completed;
+  const config = priorityConfig[task.priority];
+
+  return (
+    <motion.div
+      whileHover={{ y: -5, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className={`glass rounded-2xl p-6 border transition-all duration-300 group ${
+        task.completed 
+          ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/20' 
+          : config.border
+      } ${isOverdue ? 'ring-2 ring-red-500 animate-pulse' : ''}`}
+    >
+      <div className="space-y-4">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <div className="flex items-center space-x-2">
+            {task.favorite && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="text-yellow-500"
+              >
+                <Star className="w-4 h-4 fill-current" />
+              </motion.div>
+            )}
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            {onToggleFavorite && (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => onToggleFavorite(task.id)}
+                className={`p-1.5 rounded-lg transition-colors ${
+                  task.favorite 
+                    ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-400'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-yellow-500'
+                }`}
+              >
+                <Star className={`w-4 h-4 ${task.favorite ? 'fill-current' : ''}`} />
+              </motion.button>
+            )}
+            
+            {onEdit && (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => onEdit(task)}
+                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-blue-500 transition-colors"
+              >
+                <Edit className="w-4 h-4" />
+              </motion.button>
+            )}
+            
+            {onDelete && (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => onDelete(task.id)}
+                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-red-500 transition-colors"
+              >
+                <Trash2 className="w-4 h-4" />
+              </motion.button>
+            )}
+          </div>
+        </div>
+
+        {/* Task Tags */}
+        {task.tags && task.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {task.tags.map((tag, index) => (
+              <span key={index} className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <h3 className={`font-semibold text-lg ${
+              task.completed ? 'line-through text-muted-foreground' : 'text-foreground'
+            }`}>
+              {task.title}
+            </h3>
+            <p className={`text-sm mt-1 ${
+              task.completed ? 'line-through text-muted-foreground' : 'text-muted-foreground'
+            }`}>
+              {task.description}
+            </p>
+          </div>
+          
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => onToggleComplete(task.id)}
+            className={`p-2 rounded-lg transition-colors ${
+              task.completed
+                ? 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-green-500'
+            }`}
+          >
+            <CheckCircle className="w-5 h-5" />
+          </motion.button>
+        </div>
+
+        {/* Priority Indicator */}
+        <div className="flex items-center space-x-2">
+          <Flag className="w-4 h-4 text-muted-foreground" />
+          <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${config.color}`} />
+          <span className="text-sm text-muted-foreground capitalize">{task.priority} Priority</span>
+        </div>
+
+        {/* Category */}
+        <div className="flex items-center space-x-2">
+          <Tag className="w-4 h-4 text-muted-foreground" />
+          <span className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-lg text-muted-foreground">
+            {task.category}
+          </span>
+        </div>
+
+        {/* Due Date */}
+        <div className="flex items-center space-x-2">
+          <Calendar className="w-4 h-4 text-muted-foreground" />
+          <span className={`text-sm ${
+            isOverdue ? 'text-red-500 font-medium' : 'text-muted-foreground'
+          }`}>
+            Due: {new Date(task.dueDate).toLocaleDateString()}
+          </span>
+          {isOverdue && <Clock className="w-4 h-4 text-red-500" />}
+        </div>
+
+        {/* XP Reward */}
+        <div className="flex items-center justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
+          <span className="text-sm text-muted-foreground">XP Reward</span>
+          <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${config.color} text-white text-sm font-bold`}>
+            +{task.xpReward} XP
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default TaskCard;
