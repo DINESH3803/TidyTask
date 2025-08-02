@@ -193,7 +193,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
             className="relative w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-white/20 dark:border-white/10"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between p-6 border-b border-amber-200 dark:border-amber-700">
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {editingTask ? 'Edit Task' : 'Add New Task'}
               </h2>
@@ -279,7 +279,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                       onClick={() => handlePriorityChange(key as 'low' | 'medium' | 'high')}
                       className={`p-3 rounded-xl border-2 transition-all ${
                         formData.priority === key
-                          ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                          ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20'
                           : 'border-gray-200 dark:border-gray-600 hover:border-gray-300'
                       }`}
                     >
@@ -307,7 +307,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   className={`w-full px-4 py-3 rounded-xl border transition-colors ${
                     errors.category
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                      : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500/20'
+                      : 'border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500/20'
                   } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4`}
                 >
                   <option value="">Select a category</option>
@@ -342,7 +342,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   className={`w-full px-4 py-3 rounded-xl border transition-colors ${
                     errors.dueDate
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                      : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500/20'
+                      : 'border-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-500/20'
                   } bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4`}
                 />
                 {errors.dueDate && (
@@ -365,7 +365,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                 <select
                   value={formData.repeat}
                   onChange={(e) => handleInputChange('repeat', e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                 >
                   <option value="none">No Repeat</option>
                   <option value="daily">Daily</option>
@@ -373,7 +373,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   <option value="monthly">Monthly</option>
                 </select>
                 {formData.repeat !== 'none' && (
-                  <div className="text-xs text-blue-600 dark:text-blue-400">
+                  <div className="text-xs text-orange-600 dark:text-orange-400">
                     This task will automatically recreate when completed
                   </div>
                 )}
@@ -389,7 +389,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   value={formData.tags}
                   onChange={(e) => handleInputChange('tags', e.target.value)}
                   placeholder="e.g. work, urgent, project"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                 />
                 <div className="text-xs text-gray-500">
                   {formData.tags && (
@@ -397,7 +397,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                       {formData.tags.split(',').map((tag, index) => {
                         const trimmedTag = tag.trim();
                         return trimmedTag ? (
-                          <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full text-xs">
+                          <span key={index} className="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-400 rounded-full text-xs">
                             #{trimmedTag}
                           </span>
                         ) : null;
@@ -408,16 +408,16 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
               </div>
 
               {/* XP Reward Display */}
-              <div className="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-xl border border-yellow-200 dark:border-yellow-800">
+              <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl border border-amber-200 dark:border-amber-800">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                  <span className="text-sm font-medium text-amber-800 dark:text-amber-200">
                     XP Reward
                   </span>
                   <motion.div
                     key={formData.xpReward}
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
-                    className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-sm font-bold rounded-full"
+                    className="px-3 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm font-bold rounded-full"
                   >
                     +{formData.xpReward} XP
                   </motion.div>
@@ -433,7 +433,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                 className={`w-full py-3 px-6 rounded-xl font-semibold transition-all ${
                   isSubmitting
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl'
+                    : 'bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 shadow-lg hover:shadow-xl'
                 } text-white flex items-center justify-center space-x-2`}
               >
                 {isSubmitting ? (

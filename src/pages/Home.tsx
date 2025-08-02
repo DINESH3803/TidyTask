@@ -67,12 +67,12 @@ const Home: React.FC = () => {
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
-                className="p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-xl"
+                className="p-4 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl shadow-xl"
               >
                 <CheckSquare className="w-12 h-12 text-white" />
               </motion.div>
             </div>
-            <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
               Welcome to TidyTask
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -88,14 +88,14 @@ const Home: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
+              className="px-8 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
             >
               Get Started
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 glass border border-white/20 dark:border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-colors"
+              className="px-8 py-3 glass border border-amber-200/30 dark:border-amber-700/20 rounded-xl font-semibold hover:bg-white/10 transition-colors"
             >
               Learn More
             </motion.button>
@@ -112,7 +112,7 @@ const Home: React.FC = () => {
               key={feature.title}
               variants={itemVariants}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="glass rounded-2xl p-8 border border-white/20 dark:border-white/10 hover:border-white/30 dark:hover:border-white/20 transition-all duration-300"
+              className="glass rounded-2xl p-8 border border-amber-200/30 dark:border-amber-700/20 hover:border-amber-300/40 dark:hover:border-amber-600/30 transition-all duration-300"
             >
               <div className="space-y-4">
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${feature.color} p-3 shadow-lg`}>
@@ -132,7 +132,7 @@ const Home: React.FC = () => {
         {/* Stats Section */}
         <motion.div
           variants={itemVariants}
-          className="mt-16 glass rounded-2xl p-8 border border-white/20 dark:border-white/10 relative overflow-hidden"
+          className="mt-16 glass rounded-2xl p-8 border border-amber-200/30 dark:border-amber-700/20 relative overflow-hidden"
         >
           {/* Animated Background */}
           <div className="absolute inset-0 opacity-5">
@@ -145,7 +145,7 @@ const Home: React.FC = () => {
                 repeat: Infinity,
                 repeatType: 'reverse',
               }}
-              className="w-full h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+              className="w-full h-full bg-gradient-to-r from-orange-500 via-red-500 to-pink-500"
               style={{ backgroundSize: '400% 400%' }}
             />
           </div>
@@ -156,7 +156,7 @@ const Home: React.FC = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent"
               >
                 {stats.tasksCompleted.toLocaleString()}
               </motion.div>
@@ -167,7 +167,7 @@ const Home: React.FC = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.6, type: 'spring' }}
-                className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent"
+                className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent"
               >
                 {completionRate}%
               </motion.div>
@@ -178,7 +178,7 @@ const Home: React.FC = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.7, type: 'spring' }}
-                className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent"
+                className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent"
               >
                 Level {stats.currentLevel}
               </motion.div>
@@ -189,7 +189,7 @@ const Home: React.FC = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.8, type: 'spring' }}
-                className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent"
               >
                 {stats.currentStreak}
               </motion.div>
@@ -207,14 +207,14 @@ const Home: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
+              className="px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
             >
               Add Quick Task
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 glass border border-white/20 dark:border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-colors"
+              className="px-6 py-3 glass border border-amber-200/30 dark:border-amber-700/20 rounded-xl font-semibold hover:bg-white/10 transition-colors"
             >
               View Progress
             </motion.button>

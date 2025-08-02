@@ -19,8 +19,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
   onToggleFavorite 
 }) => {
   const priorityConfig = {
-    low: { color: 'from-green-500 to-emerald-500', border: 'border-green-200 dark:border-green-800' },
-    medium: { color: 'from-yellow-500 to-orange-500', border: 'border-yellow-200 dark:border-yellow-800' },
+    low: { color: 'from-emerald-500 to-green-500', border: 'border-emerald-200 dark:border-emerald-800' },
+    medium: { color: 'from-amber-500 to-orange-500', border: 'border-amber-200 dark:border-amber-800' },
     high: { color: 'from-red-500 to-pink-500', border: 'border-red-200 dark:border-red-800' },
   };
 
@@ -33,7 +33,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       whileTap={{ scale: 0.98 }}
       className={`glass rounded-2xl p-6 border transition-all duration-300 group ${
         task.completed 
-          ? 'border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/20' 
+          ? 'border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-emerald-900/20' 
           : config.border
       } ${isOverdue ? 'ring-2 ring-red-500 animate-pulse' : ''}`}
     >
@@ -45,9 +45,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-yellow-500"
+                className="text-amber-500"
               >
-                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current text-amber-500" />
               </motion.div>
             )}
           </div>
@@ -61,11 +61,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
                 onClick={() => onToggleFavorite(task.id)}
                 className={`p-1.5 rounded-lg transition-colors ${
                   task.favorite 
-                    ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-400'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-yellow-500'
+                    ? 'bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-400'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-amber-500'
                 }`}
               >
-                <Star className={`w-4 h-4 ${task.favorite ? 'fill-current' : ''}`} />
+              <Star className={`w-4 h-4 ${task.favorite ? 'fill-current text-amber-500' : ''}`} />
               </motion.button>
             )}
             
@@ -74,7 +74,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => onEdit(task)}
-                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-blue-500 transition-colors"
+                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-orange-500 transition-colors"
               >
                 <Edit className="w-4 h-4" />
               </motion.button>
@@ -97,7 +97,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         {task.tags && task.tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {task.tags.map((tag, index) => (
-              <span key={index} className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full">
+              <span key={index} className="px-2 py-1 text-xs bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-400 rounded-full">
                 #{tag}
               </span>
             ))}
@@ -124,8 +124,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
             onClick={() => onToggleComplete(task.id)}
             className={`p-2 rounded-lg transition-colors ${
               task.completed
-                ? 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-green-500'
+                ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-emerald-500'
             }`}
           >
             <CheckCircle className="w-5 h-5" />
@@ -142,7 +142,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         {/* Category */}
         <div className="flex items-center space-x-2">
           <Tag className="w-4 h-4 text-muted-foreground" />
-          <span className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-lg text-muted-foreground">
+          <span className="text-sm bg-amber-100 dark:bg-amber-800 px-2 py-1 rounded-lg text-muted-foreground">
             {task.category}
           </span>
         </div>

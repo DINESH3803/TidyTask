@@ -171,11 +171,11 @@ const Statistics: React.FC = () => {
         {/* Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
-            <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-lg">
+            <div className="p-3 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl shadow-lg">
               <BarChart3 className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 Statistics
               </h1>
               <p className="text-muted-foreground">Track your productivity and progress</p>
@@ -191,7 +191,7 @@ const Statistics: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass rounded-2xl p-6 border border-white/20 dark:border-white/10 hover:bg-white/10 transition-all duration-300"
+              className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20 hover:bg-white/10 transition-all duration-300"
             >
               <div className="flex items-center space-x-4">
                 <div className={`p-3 rounded-lg ${stat.bgColor}`}>
@@ -211,7 +211,7 @@ const Statistics: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="glass rounded-2xl p-6 border border-white/20 dark:border-white/10"
+          className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20"
         >
           <h2 className="text-xl font-semibold text-foreground mb-6">XP Progress (Last 7 Days)</h2>
           <div className="h-64">
@@ -242,10 +242,10 @@ const Statistics: React.FC = () => {
                 <Line 
                   type="monotone" 
                   dataKey="xp" 
-                  stroke="#8B5CF6" 
+                  stroke="#EA580C" 
                   strokeWidth={3}
-                  dot={{ fill: '#8B5CF6', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: '#8B5CF6', strokeWidth: 2 }}
+                  dot={{ fill: '#EA580C', strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, stroke: '#EA580C', strokeWidth: 2 }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -257,7 +257,7 @@ const Statistics: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="glass rounded-2xl p-6 border border-white/20 dark:border-white/10"
+          className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20"
         >
           <h2 className="text-xl font-semibold text-foreground mb-6">Tasks by Category</h2>
           <div className="h-64">
@@ -281,8 +281,8 @@ const Statistics: React.FC = () => {
                     color: '#F9FAFB'
                   }}
                 />
-                <Bar dataKey="count" fill="#3B82F6" name="Total Tasks" />
-                <Bar dataKey="completed" fill="#10B981" name="Completed" />
+                <Bar dataKey="count" fill="#EA580C" name="Total Tasks" />
+                <Bar dataKey="completed" fill="#059669" name="Completed" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -293,12 +293,12 @@ const Statistics: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="glass rounded-2xl p-6 border border-white/20 dark:border-white/10"
+          className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20"
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-foreground">Level Progress</h2>
             <div className="flex items-center space-x-2">
-              <Zap className="w-5 h-5 text-yellow-500" />
+              <Zap className="w-5 h-5 text-amber-500" />
               <span className="text-lg font-bold text-foreground">Level {currentLevel}</span>
             </div>
           </div>
@@ -312,7 +312,7 @@ const Statistics: React.FC = () => {
                 initial={{ width: 0 }}
                 animate={{ width: `${xpPercentage}%` }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
-                className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
+                className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"
               />
             </div>
             <div className="text-center text-sm text-muted-foreground">
@@ -326,7 +326,7 @@ const Statistics: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="glass rounded-2xl p-6 border border-white/20 dark:border-white/10"
+          className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20"
         >
           <h2 className="text-xl font-semibold text-foreground mb-6">Achievements</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -338,26 +338,26 @@ const Statistics: React.FC = () => {
                 transition={{ delay: 0.9 + index * 0.1 }}
                 className={`p-4 rounded-xl border transition-all ${
                   achievement.unlocked
-                    ? 'bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border-yellow-200 dark:border-yellow-800'
+                    ? 'bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-200 dark:border-amber-800'
                     : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-60'
                 }`}
               >
                 <div className="flex items-center space-x-3">
                   <div className={`p-2 rounded-lg ${
                     achievement.unlocked
-                      ? 'bg-yellow-100 dark:bg-yellow-900'
+                      ? 'bg-amber-100 dark:bg-amber-900'
                       : 'bg-gray-100 dark:bg-gray-700'
                   }`}>
                     <achievement.icon className={`w-5 h-5 ${
                       achievement.unlocked
-                        ? 'text-yellow-600 dark:text-yellow-400'
+                        ? 'text-amber-600 dark:text-amber-400'
                         : 'text-gray-400'
                     }`} />
                   </div>
                   <div>
                     <div className={`font-medium ${
                       achievement.unlocked
-                        ? 'text-yellow-800 dark:text-yellow-200'
+                        ? 'text-amber-800 dark:text-amber-200'
                         : 'text-gray-500'
                     }`}>
                       {achievement.title}
@@ -368,7 +368,7 @@ const Statistics: React.FC = () => {
                   </div>
                   {achievement.unlocked && (
                     <div className="ml-auto">
-                      <Trophy className="w-5 h-5 text-yellow-500" />
+                      <Trophy className="w-5 h-5 text-amber-500" />
                     </div>
                   )}
                 </div>
