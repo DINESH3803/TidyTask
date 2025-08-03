@@ -282,7 +282,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <motion.div
             key={location?.pathname || 'default'}
             initial={{ opacity: 0, y: 20 }}
-            className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full"
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
