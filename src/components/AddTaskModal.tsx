@@ -246,7 +246,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   placeholder="Describe your task..."
                   rows={3}
-                  className={`w-full px-4 py-3 rounded-xl border transition-colors resize-none ${
+                  className={`w-full px-4 py-3 rounded-xl border transition-colors resize-none overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-100 dark:scrollbar-track-gray-800 ${
                     errors.description
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
                       : 'border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500/20'
