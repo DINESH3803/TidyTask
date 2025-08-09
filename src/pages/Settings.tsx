@@ -559,7 +559,7 @@ const Settings: React.FC = () => {
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                         activeTab === tab.id
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
                           : 'text-muted-foreground hover:text-foreground hover:bg-white/10'
                       }`}
                     >
@@ -607,7 +607,7 @@ const Settings: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSave}
-                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow flex items-center space-x-2"
+                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow flex items-center space-x-2"
               >
                 <Save className="w-5 h-5" />
                 <span>Save Changes</span>
