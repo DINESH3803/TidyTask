@@ -86,10 +86,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       onClick={() => removeNotification(notification.id)}
       className={`p-4 rounded-xl shadow-lg border backdrop-blur-lg ${
         notification.type === 'success' 
-          ? 'bg-emerald-50/90 dark:bg-emerald-900/90 border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200'
+          ? 'bg-emerald-50/95 dark:bg-emerald-900/95 border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-100'
           : notification.type === 'achievement'
-          ? 'bg-amber-50/90 dark:bg-amber-900/90 border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200'
-          : 'bg-orange-50/90 dark:bg-orange-900/90 border-orange-200 dark:border-orange-800 text-orange-800 dark:text-orange-200'
+          ? 'bg-purple-50/95 dark:bg-purple-900/95 border-purple-300 dark:border-purple-700 text-purple-800 dark:text-purple-100'
+          : 'bg-blue-50/95 dark:bg-blue-900/95 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-100'
       }`}
     >
       <div className="flex items-center space-x-2">
@@ -100,13 +100,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 dark:from-amber-950 dark:via-orange-950 dark:to-red-950">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-950 dark:via-blue-950 dark:to-indigo-950">
       {/* Top Navbar */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="sticky top-0 z-50 glass border-b border-amber-200/30 dark:border-amber-700/20 backdrop-blur-lg"
+        className="sticky top-0 z-50 glass border-b border-blue-200/40 dark:border-blue-400/20 backdrop-blur-xl"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -117,10 +117,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               className="flex items-center space-x-3"
             >
               <Link to="/" className="flex items-center space-x-3">
-                <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl shadow-lg">
+                <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
                   <CheckSquare className="w-6 h-6 text-white" />
                 </div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   TidyTask
                 </h1>
               </Link>
@@ -137,7 +137,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       whileTap={{ scale: 0.95 }}
                       className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all ${
                         isActive
-                          ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg'
+                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
                           : 'text-muted-foreground hover:text-foreground hover:bg-white/10'
                       }`}
                     >
@@ -157,10 +157,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                    className="w-4 h-4 border-2 border-orange-500 border-t-transparent rounded-full"
+                    className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"
                   />
                 )}
-                <Zap className="w-4 h-4 text-amber-500" />
+                <Zap className="w-4 h-4 text-blue-500" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
                     <span>Level {stats.currentLevel}</span>
@@ -171,7 +171,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       initial={{ width: 0 }}
                       animate={{ width: `${xpPercentage}%` }}
                       transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
-                      className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full shadow-sm"
+                      className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full shadow-sm"
                     />
                   </div>
                 </div>
@@ -193,7 +193,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={handleSignOut}
-                    className="p-2 rounded-xl glass border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 transition-colors"
+                    className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-shadow flex items-center space-x-2"
                   >
                     <LogOut className="w-5 h-5 text-muted-foreground" />
                   </motion.button>
@@ -215,7 +215,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-2 rounded-xl glass border border-amber-200/30 dark:border-amber-700/20 hover:bg-white/20 dark:hover:bg-white/10 transition-colors"
+              className="p-2 rounded-xl glass border border-blue-200/40 dark:border-blue-400/20 hover:bg-white/20 dark:hover:bg-white/10 transition-colors"
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
@@ -226,7 +226,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Sun className="w-5 h-5 text-amber-500" />
+                    <Sun className="w-5 h-5 text-yellow-500" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -236,7 +236,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Moon className="w-5 h-5 text-orange-600" />
+                    <Moon className="w-5 h-5 text-indigo-600" />
                   </motion.div>
                 )}
               </AnimatePresence>

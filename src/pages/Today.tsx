@@ -161,7 +161,7 @@ const Today: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20 bg-gradient-to-r from-amber-50/50 to-orange-50/50 dark:from-amber-900/20 dark:to-orange-900/20"
+            className="glass rounded-2xl p-6 border border-blue-200/40 dark:border-blue-400/20 bg-gradient-to-r from-blue-50/60 to-indigo-50/60 dark:from-blue-900/30 dark:to-indigo-900/30"
           >
             <h1 className="text-3xl font-bold text-foreground mb-2">
               Good {new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 18 ? 'Afternoon' : 'Evening'}!
@@ -178,9 +178,9 @@ const Today: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="p-4 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 rounded-xl border border-amber-200 dark:border-amber-800"
+              className="p-4 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl border border-blue-200 dark:border-blue-700"
             >
-              <p className="text-amber-800 dark:text-amber-200 font-medium">
+              <p className="text-blue-800 dark:text-blue-100 font-medium">
                 {dailyMessage}
               </p>
             </motion.div>
@@ -193,14 +193,14 @@ const Today: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="glass rounded-xl p-4 border border-amber-200/30 dark:border-amber-700/20"
+            className="glass rounded-xl p-4 border border-blue-200/40 dark:border-blue-400/20"
           >
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                <Target className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+              <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-orange-600">{totalToday}</div>
+                <div className="text-2xl font-bold text-blue-600">{totalToday}</div>
                 <div className="text-sm text-muted-foreground">Today's Tasks</div>
               </div>
             </div>
@@ -227,14 +227,14 @@ const Today: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="glass rounded-xl p-4 border border-amber-200/30 dark:border-amber-700/20"
+            className="glass rounded-xl p-4 border border-blue-200/40 dark:border-blue-400/20"
           >
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-red-100 dark:bg-red-900 rounded-lg">
-                <Star className="w-5 h-5 text-red-600 dark:text-red-400" />
+              <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                <Star className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-red-600">{completionRate}%</div>
+                <div className="text-2xl font-bold text-purple-600">{completionRate}%</div>
                 <div className="text-sm text-muted-foreground">Success Rate</div>
               </div>
             </div>
@@ -263,12 +263,12 @@ const Today: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="glass rounded-2xl p-6 border border-amber-200/30 dark:border-amber-700/20"
+          className="glass rounded-2xl p-6 border border-blue-200/40 dark:border-blue-400/20"
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-foreground">Level Progress</h2>
             <div className="flex items-center space-x-2">
-              <Zap className="w-5 h-5 text-amber-500" />
+              <Zap className="w-5 h-5 text-blue-500" />
               <span className="text-lg font-bold text-foreground">Level {stats.currentLevel}</span>
             </div>
           </div>
@@ -282,7 +282,7 @@ const Today: React.FC = () => {
                 initial={{ width: 0 }}
                 animate={{ width: `${xpPercentage}%` }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.7 }}
-                className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"
+                className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full"
               />
             </div>
             <div className="text-center text-sm text-muted-foreground">
@@ -301,7 +301,7 @@ const Today: React.FC = () => {
             className={`px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center space-x-3 ${
               syncing 
                 ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700'
+                : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'
             } text-white`}
           >
             {syncing ? (
@@ -349,7 +349,7 @@ const Today: React.FC = () => {
           className="space-y-4"
         >
           <div className="flex items-center space-x-2">
-            <Calendar className="w-5 h-5 text-orange-500" />
+            <Calendar className="w-5 h-5 text-blue-500" />
             <h2 className="text-xl font-semibold text-foreground">
               Today's Tasks ({todayTasks.length})
             </h2>
@@ -374,7 +374,7 @@ const Today: React.FC = () => {
             <h2 className="text-xl font-semibold text-foreground">
               Upcoming Tasks
             </h2>
-            <div className="glass rounded-xl p-4 border border-amber-200/30 dark:border-amber-700/20">
+            <div className="glass rounded-xl p-4 border border-blue-200/40 dark:border-blue-400/20">
               <div className="space-y-2">
                 {upcomingTasks.map((task, index) => (
                   <motion.div
