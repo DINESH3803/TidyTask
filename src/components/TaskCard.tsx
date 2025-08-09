@@ -34,7 +34,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       className={`glass rounded-2xl p-6 border transition-all duration-300 group ${
         task.completed 
           ? 'border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-emerald-900/20' 
-          : config.border
+          : 'border-blue-200/40 dark:border-blue-400/20'
       } ${isOverdue ? 'ring-2 ring-red-500 animate-pulse' : ''}`}
     >
       <div className="space-y-4">
@@ -45,9 +45,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-amber-500"
+                className="text-yellow-500"
               >
-                <Star className="w-4 h-4 fill-current text-amber-500" />
+                <Star className="w-4 h-4 fill-current text-yellow-500" />
               </motion.div>
             )}
           </div>
@@ -61,11 +61,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
                 onClick={() => onToggleFavorite(task.id)}
                 className={`p-1.5 rounded-lg transition-colors ${
                   task.favorite 
-                    ? 'bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-400'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-amber-500'
+                    ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-400'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-yellow-500'
                 }`}
               >
-              <Star className={`w-4 h-4 ${task.favorite ? 'fill-current text-amber-500' : ''}`} />
+              <Star className={`w-4 h-4 ${task.favorite ? 'fill-current text-yellow-500' : ''}`} />
               </motion.button>
             )}
             
@@ -74,7 +74,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => onEdit(task)}
-                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-orange-500 transition-colors"
+                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 hover:text-blue-500 transition-colors"
               >
                 <Edit className="w-4 h-4" />
               </motion.button>
@@ -142,7 +142,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         {/* Category */}
         <div className="flex items-center space-x-2">
           <Tag className="w-4 h-4 text-muted-foreground" />
-          <span className="text-sm bg-amber-100 dark:bg-amber-800 px-2 py-1 rounded-lg text-muted-foreground">
+          <span className="text-sm bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded-lg text-muted-foreground">
             {task.category}
           </span>
         </div>
