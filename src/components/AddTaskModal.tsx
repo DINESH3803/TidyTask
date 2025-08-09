@@ -208,7 +208,8 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+            <div className="max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 dark:scrollbar-track-gray-700">
+              <form onSubmit={handleSubmit} className="p-6 space-y-6">
               {/* Title */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -449,7 +450,8 @@ const AddTaskModal: React.FC<AddTaskModalProps> = ({
                   </>
                 )}
               </motion.button>
-            </form>
+              </form>
+            </div>
           </motion.div>
         </motion.div>
       )}
